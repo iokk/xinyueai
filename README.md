@@ -1,8 +1,26 @@
-# Xinyue AI
+<h1 align="center">Xinyue AI</h1>
 
-![Version](https://img.shields.io/badge/version-1.2.0-blue) ![Vue](https://img.shields.io/badge/Vue-3-42b883) ![NestJS](https://img.shields.io/badge/NestJS-12-ea2845) ![Docker](https://img.shields.io/badge/deploy-Docker%20Compose-2496ed)
+<p align="center">
+  <img src="https://img.shields.io/badge/version-1.2.0-blue" alt="version" />
+  <img src="https://img.shields.io/badge/Vue-3-42b883" alt="Vue 3" />
+  <img src="https://img.shields.io/badge/NestJS-12-ea2845" alt="NestJS 12" />
+  <img src="https://img.shields.io/badge/deploy-Docker%20Compose-2496ed" alt="Docker Compose" />
+</p>
 
-> 开源、可自托管的 AI 创作与模型管理平台——多模型对话、模型网关、无限画布、图片 / 视频 / 商品视觉、办公输出、助手与技能、运营后台，一个工作空间全装下。
+<p align="center">
+  <b>开源、可自托管的 AI 创作与模型管理平台</b><br>
+  多模型对话 · 模型网关 · 无限画布 · 图片 / 视频 / 商品视觉 · 办公输出 · 助手与技能 · 运营后台
+</p>
+
+<p align="center">
+  <a href="#功能">功能</a> · <a href="#界面预览">界面预览</a> · <a href="#快速开始">快速开始</a> · <a href="#技术栈">技术栈</a> · <a href="#文档">文档</a>
+</p>
+
+<p align="center">
+  <img src="docs/images/xinyue-chat.png" alt="Xinyue AI 对话工作区" width="86%" />
+</p>
+
+**亮点一览**
 
 - **创作**：无限画布（Vue Flow）、图片 / 视频 / 商品视觉生成、提示词库与作品发布
 - **办公**：PPT、文档、表格生成与导出（PPTX / DOCX / XLSX）
@@ -10,18 +28,6 @@
 - **部署**：Docker 一条命令安装；用户端 Vue 3、服务端 NestJS、管理端 Vue 3
 
 当前版本是 **1.2.0**。已发布的变化见 [更新日志](CHANGELOG.md)。
-
-![Xinyue AI 对话工作区](docs/images/xinyue-chat.png)
-
-## 目录
-
-- [功能](#功能)
-- [界面预览](#界面预览)
-- [快速开始](#快速开始)
-- [技术栈](#技术栈)
-- [文档](#文档)
-- [社区](#社区)
-- [贡献](#贡献)
 
 ## 功能
 
