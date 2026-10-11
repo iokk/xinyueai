@@ -1,8 +1,13 @@
 # Xinyue AI
 
-开源、可自托管的 AI 创作与模型管理平台。
+![Version](https://img.shields.io/badge/version-1.2.0-blue) ![Vue](https://img.shields.io/badge/Vue-3-42b883) ![NestJS](https://img.shields.io/badge/NestJS-12-ea2845) ![Docker](https://img.shields.io/badge/deploy-Docker%20Compose-2496ed)
 
-同一工作空间包含多模型对话、模型网关、无限画布、图片 / 视频 / 商品视觉、办公输出、助手与技能，以及运营后台。用户端使用 Vue 3，服务端使用 NestJS、Prisma 与 BullMQ，可以用 Docker 一条命令部署。
+> 开源、可自托管的 AI 创作与模型管理平台——多模型对话、模型网关、无限画布、图片 / 视频 / 商品视觉、办公输出、助手与技能、运营后台，一个工作空间全装下。
+
+- **创作**：无限画布（Vue Flow）、图片 / 视频 / 商品视觉生成、提示词库与作品发布
+- **办公**：PPT、文档、表格生成与导出（PPTX / DOCX / XLSX）
+- **平台**：模型网关（多协议、健康检查、BYOK、Token 计费）、团队空间、订阅支付、完整管理后台
+- **部署**：Docker 一条命令安装；用户端 Vue 3、服务端 NestJS、管理端 Vue 3
 
 当前版本是 **1.2.0**。已发布的变化见 [更新日志](CHANGELOG.md)。
 
