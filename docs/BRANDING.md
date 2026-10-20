@@ -161,15 +161,52 @@ git merge upstream/main
 node scripts/apply-branding.mjs
 node scripts/apply-branding.mjs --verify
 
-# 3. 重建
-docker compose -f docker-compose.prod.yml build frontend backend
-docker compose -f docker-compose.prod.yml up -d frontend backend
+# 3. 重建（必须带 --env-file，见下）
+docker compose --env-file .env.production -f docker-compose.prod.yml build frontend backend
+docker compose --env-file .env.production -f docker-compose.prod.yml up -d --no-deps frontend backend
 
 # 4. 验证
 curl -s http://127.0.0.1:8081/ | grep -o '<title>[^<]*</title>'        # 期望 <title>bozzii</title>
-curl -s http://127.0.0.1:8081/ | grep -c '粤ICP备2026040043号-1'        # 期望 ≥1
 curl -s http://127.0.0.1:8081/v1/health/live                             # 期望 200
 ```
+
+### 坑一：`docker compose build` 报 `LOCAL_WORKER_TOKEN is missing`
+
+`docker-compose.prod.yml` 里 `iopaint` / `realesrgan` / `image-tools` 用了
+`${LOCAL_WORKER_TOKEN:?}` 强校验语法。Compose 会为**文件里所有服务**做变量插值，
+即使这些服务的 profile 没被选中，也会在解析阶段报错退出。
+
+**必须显式带 env file**，不要靠默认的 `.env` 自动发现：
+
+```bash
+docker compose --env-file .env.production -f docker-compose.prod.yml build frontend backend
+```
+
+### 坑二：改了代码但页面还是旧牌子（运行时内容在数据库里）
+
+这是最容易误判成「部署没生效」的一种。品牌字符串有**两个来源**：
+
+| 来源 | 存哪 | 升级/重建会怎样 |
+| --- | --- | --- |
+| 源码硬编码 | Git | 重建镜像即生效 |
+| `SystemSetting.siteName`、`SystemSetting.siteContent`（JSON） | PostgreSQL | **`git pull` 不会动它**，旧品牌一直留在数据库里 |
+
+`siteContent` 是安装时把默认值**写进数据库**的，之后代码里的默认值就不再管用了。
+表现：镜像重建成功、`dist` 里已无旧品牌，但首页仍有一两处 `Xinyue AI`。
+
+处理（先备份再改）：
+
+```bash
+# 备份
+docker exec xinyueai-postgres-1 psql -U flux -d flux_studio -t \
+  -c "select \"siteContent\"::text from \"SystemSetting\"" > /root/sitecontent-$(date +%Y%m%d-%H%M).json
+
+# 就地替换
+docker exec xinyueai-postgres-1 psql -U flux -d flux_studio \
+  -c "UPDATE \"SystemSetting\" SET \"siteContent\" = replace(\"siteContent\"::text, 'Xinyue AI', 'bozzii')::jsonb WHERE id = 'global'"
+```
+
+或者直接进管理后台 → 系统设置 → 站点内容里逐条改（更安全，但慢）。
 
 ### 脚本报错怎么办
 
