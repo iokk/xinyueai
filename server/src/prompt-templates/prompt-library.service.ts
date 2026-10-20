@@ -264,7 +264,7 @@ const SOURCES: PromptLibrarySource[] = [
   {
     id: "published-works-image",
     promptType: "IMAGE",
-    upstreamName: "Xinyue AI 公开作品",
+    upstreamName: "bozzii 公开作品",
     defaultDisplayName: "社区图片作品",
     homepage: "/prompts",
     format: "works",
@@ -272,38 +272,38 @@ const SOURCES: PromptLibrarySource[] = [
     external: false,
     defaultEnabled: true,
     reviewStatus: "internal",
-    reviewNote: "Xinyue AI 内部公开作品",
+    reviewNote: "bozzii 内部公开作品",
   },
   {
     id: "xinyue-bundled-image",
     promptType: "IMAGE",
-    upstreamName: "Xinyue AI 内置提示词",
-    defaultDisplayName: "Xinyue AI 内置图片提示词",
+    upstreamName: "bozzii 内置提示词",
+    defaultDisplayName: "bozzii 内置图片提示词",
     homepage: "/prompts",
     format: "local",
     defaultSortOrder: 5,
     external: false,
     defaultEnabled: true,
     reviewStatus: "internal",
-    reviewNote: "Xinyue AI 随程序发布的内置提示词",
+    reviewNote: "bozzii 随程序发布的内置提示词",
   },
   {
     id: "xinyue-bundled-video",
     promptType: "VIDEO",
-    upstreamName: "Xinyue AI 内置提示词",
-    defaultDisplayName: "Xinyue AI 内置视频提示词",
+    upstreamName: "bozzii 内置提示词",
+    defaultDisplayName: "bozzii 内置视频提示词",
     homepage: "/prompts",
     format: "local",
     defaultSortOrder: 105,
     external: false,
     defaultEnabled: true,
     reviewStatus: "internal",
-    reviewNote: "Xinyue AI 随程序发布的内置提示词",
+    reviewNote: "bozzii 随程序发布的内置提示词",
   },
   {
     id: "published-works-video",
     promptType: "VIDEO",
-    upstreamName: "Xinyue AI 公开作品",
+    upstreamName: "bozzii 公开作品",
     defaultDisplayName: "社区视频作品",
     homepage: "/prompts",
     format: "works",
@@ -311,7 +311,7 @@ const SOURCES: PromptLibrarySource[] = [
     external: false,
     defaultEnabled: true,
     reviewStatus: "internal",
-    reviewNote: "Xinyue AI 内部公开作品",
+    reviewNote: "bozzii 内部公开作品",
   },
 ];
 
@@ -1069,7 +1069,7 @@ export class PromptLibraryService implements OnModuleInit {
               prompt: item.prompt,
               description: item.description,
               tags: item.tags,
-              author: item.author || "Xinyue AI",
+              author: item.author || "bozzii",
               imageModel: item.modelName || (source.promptType === "VIDEO" ? "通用视频模型" : "通用图片模型"),
               coverUrl: item.coverUrl,
               previewVideoUrl: item.previewVideoUrl || "",
@@ -1105,7 +1105,7 @@ export class PromptLibraryService implements OnModuleInit {
             accept: expectsJson
               ? "application/json"
               : "text/html,application/javascript;q=0.9,*/*;q=0.8",
-            "user-agent": "Xinyue-AI/1.0",
+            "user-agent": "bozzii-AI/1.0",
           },
           signal: AbortSignal.timeout(8_000),
         });
@@ -1260,7 +1260,7 @@ export class PromptLibraryService implements OnModuleInit {
         prompt: item.prompt,
         description: item.description,
         tags: item.tags,
-        author: "Xinyue AI",
+        author: "bozzii",
         imageModel: item.modelName || (source.promptType === "VIDEO" ? "通用视频模型" : "通用图片模型"),
         coverUrl: item.coverUrl,
         previewVideoUrl: item.previewVideoUrl || "",
@@ -1314,7 +1314,7 @@ export class PromptLibraryService implements OnModuleInit {
                     ? row.previewVideoUrl
                     : "",
                 author:
-                  typeof row.author === "string" ? row.author : "Xinyue AI 精选",
+                  typeof row.author === "string" ? row.author : "bozzii 精选",
                 modelName:
                   typeof row.imageModel === "string" ? row.imageModel : undefined,
               });

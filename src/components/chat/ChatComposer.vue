@@ -190,7 +190,7 @@ const jxHomeMode = computed(() => props.chatUiPreset === 'jixing' && !props.hasC
 const chatUiLabel = computed(() => ({ gpt: 'GPT', doubao: '豆包', qianwen: '千问', kimi: 'Kimi', jixing: '季星' })[chatUiPreset.value])
 const chatComposerPlaceholder = computed(() => store.temporaryChat
   ? ({ gpt: '临时聊天，不会保存', doubao: '临时对话...', qianwen: '这次提问不会出现在历史中', kimi: '临时聊天，尽管问', jixing: '这次灵感不会保存' })[chatUiPreset.value]
-  : ({ gpt: '有问题，随便问', doubao: '发消息...', qianwen: '向 Xinyue AI 提问', kimi: '尽管问，或做个 Agent 任务...', jixing: '描述你的灵感' })[chatUiPreset.value])
+  : ({ gpt: '有问题，随便问', doubao: '发消息...', qianwen: '向 bozzii 提问', kimi: '尽管问，或做个 Agent 任务...', jixing: '描述你的灵感' })[chatUiPreset.value])
 const showChatVoiceEntry = computed(() => !draft.value.trim() && !attachments.value.length)
 const kimiProject = computed(() => catalog.settings.chatHomeContent.kimiProject)
 const qianwenBanners = computed(() => catalog.settings.chatHomeContent.qianwenBanners)

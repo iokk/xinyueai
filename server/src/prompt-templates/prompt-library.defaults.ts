@@ -305,7 +305,7 @@ const videoEntries: LocalPromptLibraryEntry[] = videoSeeds.map(([sourceId, title
     tags: [...tags, mediaTag],
     coverUrl: `/assets/inspirations/video/${name}.jpg`,
     previewVideoUrl: `/assets/inspirations/video/${name}.mp4`,
-    author: sourceId === 'video-ai-shortfilm' ? 'jnMetaCode / Xinyue AI 编排' : sourceId === 'video-generateprompt' ? 'GeneratePrompt / Xinyue AI 精选' : sourceId === 'video-youmind' ? 'YouMind / Xinyue AI 精选' : 'Higgsfield / Xinyue AI 编排',
+    author: sourceId === 'video-ai-shortfilm' ? 'jnMetaCode / bozzii 编排' : sourceId === 'video-generateprompt' ? 'GeneratePrompt / bozzii 精选' : sourceId === 'video-youmind' ? 'YouMind / bozzii 精选' : 'Higgsfield / bozzii 编排',
     modelName: 'Seedance / Kling / Veo / Sora',
   }
 })

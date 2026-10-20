@@ -297,7 +297,7 @@
       <WelcomeOnboarding
         v-if="showOnboarding"
         :settings="settings"
-        :site-name="catalog.settings.siteName || 'Xinyue AI'"
+        :site-name="catalog.settings.siteName || 'bozzii'"
         :save-settings="saveSettings"
         @complete="showOnboarding = false"
       />

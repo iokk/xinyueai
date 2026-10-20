@@ -11,7 +11,7 @@
       <p>{{ error }}</p>
       <div class="shared-state__actions">
         <button type="button" :disabled="loading" @click="loadConversation">重新加载</button>
-        <RouterLink to="/chat">返回 Xinyue AI</RouterLink>
+        <RouterLink to="/chat">返回 bozzii</RouterLink>
       </div>
     </section>
     <article v-else-if="conversation" class="shared-conversation">
@@ -22,7 +22,7 @@
       </header>
       <div class="shared-messages">
         <section v-for="message in visibleMessages" :key="message.id" class="shared-message" :class="`is-${message.role.toLowerCase()}`">
-          <strong>{{ message.role === 'USER' ? '你' : 'Xinyue AI' }}</strong>
+          <strong>{{ message.role === 'USER' ? '你' : 'bozzii' }}</strong>
           <ChatMessageContent v-if="message.role === 'ASSISTANT'" class="shared-message__content" :content="message.content" />
           <p v-else>{{ message.content }}</p>
         </section>

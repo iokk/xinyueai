@@ -3,9 +3,9 @@
     <a class="landing-skip" href="#main-content">跳到主要内容</a>
 
     <header class="landing-header" :class="{ 'is-scrolled': headerScrolled }">
-      <RouterLink class="landing-brand" to="/" aria-label="Xinyue AI 首页">
-        <span class="landing-brand__mark">X</span>
-        <strong>Xinyue AI</strong>
+      <RouterLink class="landing-brand" to="/" aria-label="bozzii 首页">
+        <span class="landing-brand__mark">B</span>
+        <strong>bozzii</strong>
       </RouterLink>
 
       <nav class="landing-nav" aria-label="主要导航">
@@ -93,11 +93,11 @@
                 <img :src="mode.image" :alt="mode.imageAlt" />
                 <div class="preview-browser-mask">
                   <span class="preview-dots"><i></i><i></i><i></i></span>
-                  <span>Xinyue AI</span>
-                  <small>xinyue.ai/{{ mode.path }}</small>
+                  <span>bozzii</span>
+                  <small>bozzii.ai/{{ mode.path }}</small>
                 </div>
                 <div class="preview-sidebar-mask">
-                  <strong><span>X</span> Xinyue AI</strong>
+                  <strong><span>B</span> bozzii</strong>
                   <i v-for="item in previewNav" :key="item">{{ item }}</i>
                 </div>
               </figure>
@@ -165,7 +165,7 @@
 
     <footer class="landing-footer">
       <div class="landing-footer__brand">
-        <strong><span>X</span> Xinyue AI</strong>
+        <strong><span>B</span> bozzii</strong>
         <p>{{ landing.footerDescription }}</p>
       </div>
       <div class="landing-footer__groups">
@@ -175,12 +175,14 @@
         <section><h2>条款与政策</h2><RouterLink to="/terms">用户协议</RouterLink><RouterLink to="/privacy">隐私政策</RouterLink></section>
       </div>
       <p class="landing-footer__copyright">{{ landing.copyright }}</p>
+      <SiteFiling class="landing-footer__filing" />
     </footer>
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
+import SiteFiling from '../components/SiteFiling.vue'
 import { ArrowDown, ArrowRight, ArrowUpRight, Asterisk, ChevronDown, Menu, X } from 'lucide-vue-next'
 import { useCatalogStore, type LandingContent } from '../stores/catalog'
 
@@ -197,19 +199,19 @@ let frame = 0
 
 const defaultModes = [
   {
-    key: 'chat', title: '对话', path: 'chat', image: '/assets/chat-workspace-white.jpg', imageAlt: 'Xinyue AI 对话工作台预览',
+    key: 'chat', title: '对话', path: 'chat', image: '/assets/chat-workspace-white.jpg', imageAlt: 'bozzii 对话工作台预览',
     lead: '先聊清需求、资料和下一步。',
     description: '讨论方案、整理文件、撰写内容或分析图片。项目上下文会保留在同一段工作中，不必每次重新交代背景。',
     actions: [{ label: '开始对话', to: '/chat' }],
   },
   {
-    key: 'image', title: '图片创作', path: 'image', image: '/assets/image-studio-white.jpg', imageAlt: 'Xinyue AI 图片创作工作台预览',
+    key: 'image', title: '图片创作', path: 'image', image: '/assets/image-studio-white.jpg', imageAlt: 'bozzii 图片创作工作台预览',
     lead: '从描述或参考图开始创作。',
     description: '选择模型、比例和输出数量，生成多张候选并继续编辑，结果自动进入文件库。',
     actions: [{ label: '开始创作', to: '/image' }],
   },
   {
-    key: 'product', title: '商品上新', path: 'commerce', image: '/assets/product-visual-white.jpg', imageAlt: 'Xinyue AI 商品视觉工作台预览',
+    key: 'product', title: '商品上新', path: 'commerce', image: '/assets/product-visual-white.jpg', imageAlt: 'bozzii 商品视觉工作台预览',
     lead: '从商品资料到成套上新视觉。',
     description: '商品素材包和连续详情页分别规划、分别交付。系统会根据用途规划独立商品图片或连续中文页面，结果统一进入文件库。',
     actions: [{ label: '制作素材包', to: '/commerce' }, { label: '制作详情页', to: '/commerce' }],
@@ -250,11 +252,11 @@ const defaultFaqs = [
 const catalog = useCatalogStore()
 const fallbackLanding: LandingContent = {
   heroLead: '在一个平台，完成', modes: defaultModes, navGroups: defaultNavGroups, previewNav: defaultPreviewNav,
-  trustTitle: '创作可以大胆，关键信息不能靠猜。', trustDescription: 'Xinyue AI 会利用当前对话和你提供的资料继续工作；涉及事实信息时，只使用有依据的内容。',
+  trustTitle: '创作可以大胆，关键信息不能靠猜。', trustDescription: 'bozzii 会利用当前对话和你提供的资料继续工作；涉及事实信息时，只使用有依据的内容。',
   trustItems: [{ title: '上下文持续可用，作品统一留存', description: '项目里的对话、文件和生成结果会统一保留，可从明确版本继续处理。' }, { title: '有依据的信息，才写进商业内容', description: '没有可靠依据的内容，不会被包装成商品事实。' }],
   linksTitle: '把当前任务，接到合适的下一步。', linksDescription: '根据现在要完成的内容，继续了解相关能力和使用方式。', capabilityLinks: defaultCapabilityLinks,
   faqTitle: '开始前，你可能还想确认这些。', faqs: defaultFaqs,
-  finalTitle: '从今天要完成的事开始。', finalDescription: '提出一个问题、生成素材或发起办公任务，选择当前任务就可以开始。', footerDescription: '在同一个平台完成 AI 对话、视觉创作、办公任务和团队协作。', copyright: '© 2026 Xinyue AI. 保留所有权利。',
+  finalTitle: '从今天要完成的事开始。', finalDescription: '提出一个问题、生成素材或发起办公任务，选择当前任务就可以开始。', footerDescription: '在同一个平台完成 AI 对话、视觉创作、办公任务和团队协作。', copyright: '© 2026 bozzii. 保留所有权利。',
 }
 const landing = computed<LandingContent>(() => ({ ...fallbackLanding, ...(catalog.settings.siteContent.landing || {}) }))
 const modes = computed(() => landing.value.modes.length >= 3 ? landing.value.modes : defaultModes)

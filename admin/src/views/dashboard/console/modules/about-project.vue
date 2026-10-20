@@ -1,9 +1,9 @@
 <template>
   <div class="art-card p-5 flex-b mb-5 max-sm:mb-4">
     <div>
-      <h2 class="text-2xl font-medium">{{ xt('Xinyue AI 企业控制台') }}</h2>
+      <h2 class="text-2xl font-medium">{{ xt('bozzii 企业控制台') }}</h2>
       <p class="text-g-700 mt-1">{{ xt('统一管理客户、AI 渠道、模型定价、支付订阅与运营安全') }}</p>
-      <p class="text-g-700 mt-1">{{ xt('业务数据由 Xinyue API 实时提供') }}</p>
+      <p class="text-g-700 mt-1">{{ xt('业务数据由 bozzii API 实时提供') }}</p>
 
       <div class="flex flex-wrap gap-3.5 max-w-150 mt-9">
         <div

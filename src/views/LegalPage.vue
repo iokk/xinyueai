@@ -1,7 +1,7 @@
 <template>
   <div class="legal-page">
     <header class="legal-header">
-      <RouterLink class="legal-brand" to="/" aria-label="Xinyue AI 首页"><span>X</span><strong>Xinyue AI</strong></RouterLink>
+      <RouterLink class="legal-brand" to="/" aria-label="bozzii 首页"><span>B</span><strong>bozzii</strong></RouterLink>
       <nav aria-label="公开信息导航">
         <RouterLink v-for="item in pages" :key="item.name" :to="item.path" :class="{ 'is-active': page?.slug === item.name }">{{ item.label }}</RouterLink>
       </nav>
@@ -36,14 +36,16 @@
     </main>
 
     <footer class="legal-footer">
-      <span>© 2026 Xinyue AI. 保留所有权利。</span>
+      <span>© 2026 bozzii. 保留所有权利。</span>
       <nav><RouterLink to="/about">关于我们</RouterLink><RouterLink to="/copyright">版权说明</RouterLink><RouterLink to="/terms">用户协议</RouterLink><RouterLink to="/privacy">隐私政策</RouterLink></nav>
+      <SiteFiling />
     </footer>
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
+import SiteFiling from '../components/SiteFiling.vue'
 import { useRoute } from 'vue-router'
 import { ArrowLeft, ArrowRight } from 'lucide-vue-next'
 import DOMPurify from 'dompurify'

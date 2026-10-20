@@ -934,6 +934,15 @@
   position: absolute;
 }
 
+/* 备案信息：与版权行同处页脚底栏，靠右，避免遮挡左侧版权 */
+.landing-footer__filing {
+  position: absolute;
+  right: 24px;
+  bottom: 14px;
+  font-size: 11px;
+  color: #767676;
+}
+
 .landing-reveal {
   opacity: 0;
   transform: translateY(24px);

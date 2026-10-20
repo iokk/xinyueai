@@ -1,7 +1,7 @@
 <template>
     <section v-if="activeMode === 'chat'" :key="activeMode" class="studio-chat chat-page" :class="[`chat-ui--${chatUiPreset}`, `chat-layout--w-${chatLayout.contentWidth}`, `chat-layout--header-${chatLayout.header}`, `chat-layout--home-${chatLayout.homeLayout}`, `chat-layout--msg-${chatLayout.messageStyle}`, { 'has-messages': isConversationView, 'is-artifact-open': activeArtifact, 'is-temporary': store.temporaryChat }]">
       <div class="chat-dialog-pane">
-      <header class="chat-page__header"><h1 v-if="hasChatThread" class="chat-page__title">Xinyue AI</h1><div class="chat-page__header-actions"><button v-if="auth.isAuthenticated" class="temporary-chat-toggle" :class="{ active: store.temporaryChat }" type="button" :aria-pressed="store.temporaryChat" :aria-label="store.temporaryChat ? '退出临时聊天' : '开启临时聊天'" :title="store.temporaryChat ? '退出临时聊天' : '临时聊天'" @click="toggleTemporaryChat"><MessageCircleDashed :size="19" /></button><div v-else-if="catalog.loginEnabled" class="chat-page__auth-actions"><RouterLink to="/login?redirect=/chat">登录</RouterLink><RouterLink v-if="catalog.registrationAvailable" class="is-primary" to="/login?redirect=/chat&amp;register=1">免费注册</RouterLink></div></div></header>
+      <header class="chat-page__header"><h1 v-if="hasChatThread" class="chat-page__title">bozzii</h1><div class="chat-page__header-actions"><button v-if="auth.isAuthenticated" class="temporary-chat-toggle" :class="{ active: store.temporaryChat }" type="button" :aria-pressed="store.temporaryChat" :aria-label="store.temporaryChat ? '退出临时聊天' : '开启临时聊天'" :title="store.temporaryChat ? '退出临时聊天' : '临时聊天'" @click="toggleTemporaryChat"><MessageCircleDashed :size="19" /></button><div v-else-if="catalog.loginEnabled" class="chat-page__auth-actions"><RouterLink to="/login?redirect=/chat">登录</RouterLink><RouterLink v-if="catalog.registrationAvailable" class="is-primary" to="/login?redirect=/chat&amp;register=1">免费注册</RouterLink></div></div></header>
       <div v-if="store.lastError" class="studio-feedback" role="alert"><span>{{ store.lastError }}</span><button type="button" aria-label="关闭提示" @click="store.clearError"><X :size="15" /></button></div>
 
       <aside v-if="isJixingSkin && !isConversationView && !store.temporaryChat && !auth.isAuthenticated && catalog.loginEnabled && !jxPromoDismissed" class="jx-promo-toast">
@@ -74,7 +74,7 @@
       </aside>
 
       <footer v-if="store.temporaryChat" class="temporary-chat-retention">为保护安全，临时聊天会按管理员设置的保留期限自动删除。</footer>
-      <footer v-else-if="!auth.isAuthenticated" class="chat-legal">Xinyue AI 是 AI 服务。使用即表示你同意我们的<RouterLink to="/terms">条款</RouterLink>和<RouterLink to="/privacy">隐私政策</RouterLink>。请勿分享敏感信息。<RouterLink to="/about">了解更多</RouterLink></footer>
+      <footer v-else-if="!auth.isAuthenticated" class="chat-legal">bozzii 是 AI 服务。使用即表示你同意我们的<RouterLink to="/terms">条款</RouterLink>和<RouterLink to="/privacy">隐私政策</RouterLink>。请勿分享敏感信息。<RouterLink to="/about">了解更多</RouterLink></footer>
       </div>
       <CodeArtifactPanel v-if="activeArtifact" :artifact="activeArtifact" @close="activeArtifact = null" />
     </section>
