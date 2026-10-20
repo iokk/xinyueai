@@ -189,24 +189,48 @@ docker compose --env-file .env.production -f docker-compose.prod.yml build front
 | 来源 | 存哪 | 升级/重建会怎样 |
 | --- | --- | --- |
 | 源码硬编码 | Git | 重建镜像即生效 |
-| `SystemSetting.siteName`、`SystemSetting.siteContent`（JSON） | PostgreSQL | **`git pull` 不会动它**，旧品牌一直留在数据库里 |
+| `SystemSetting.siteName`、`SystemSetting.siteContent`（JSON） | PostgreSQL | **`git pull` 不会动它** |
+| `ContentPage.title` / `summary` / `contentHtml` | PostgreSQL | **`git pull` 不会动它** |
 
 `siteContent` 是安装时把默认值**写进数据库**的，之后代码里的默认值就不再管用了。
-表现：镜像重建成功、`dist` 里已无旧品牌，但首页仍有一两处 `Xinyue AI`。
+`ContentPage` 则是安装向导写入的关于我们 / 版权说明 / 隐私政策 / 用户协议四页正文。
+
+表现：镜像重建成功、`dist` 里已无旧品牌，但首页（`siteContent`）或法律页（`ContentPage`）
+仍有一两处 `Xinyue AI`。
 
 处理（先备份再改）：
 
 ```bash
-# 备份
+# ── SystemSetting.siteContent ──
 docker exec xinyueai-postgres-1 psql -U flux -d flux_studio -t \
   -c "select \"siteContent\"::text from \"SystemSetting\"" > /root/sitecontent-$(date +%Y%m%d-%H%M).json
 
-# 就地替换
 docker exec xinyueai-postgres-1 psql -U flux -d flux_studio \
   -c "UPDATE \"SystemSetting\" SET \"siteContent\" = replace(\"siteContent\"::text, 'Xinyue AI', 'bozzii')::jsonb WHERE id = 'global'"
+
+# ── ContentPage（法务四页）──
+docker exec xinyueai-postgres-1 psql -U flux -d flux_studio -t -A -F'|' \
+  -c "select slug, title, summary, \"contentHtml\" from \"ContentPage\"" \
+  > /root/contentpage-backup-$(date +%Y%m%d-%H%M).txt
+
+docker exec xinyueai-postgres-1 psql -U flux -d flux_studio \
+  -c "UPDATE \"ContentPage\" SET title = replace(title,'Xinyue AI','bozzii'), summary = replace(summary,'Xinyue AI','bozzii'), \"contentHtml\" = replace(\"contentHtml\",'Xinyue AI','bozzii') WHERE title LIKE '%Xinyue%' OR summary LIKE '%Xinyue%' OR \"contentHtml\" LIKE '%Xinyue%'"
 ```
 
-或者直接进管理后台 → 系统设置 → 站点内容里逐条改（更安全，但慢）。
+或者直接进管理后台 → 内容管理里逐条改（更安全，但慢）。
+
+**只改可见文案，不要改 `slug`。** 原因：
+
+- `slug` 是 `ContentPage` 的主键兼路由标识，`LegalPage.vue` 用
+  `/content-pages/${slug}` 取内容，页面导航也按 slug 匹配；
+- 改 slug 等于改 URL。已经发出去、收藏、被搜索引擎收录的旧链接会 404，
+  而且不会自动重定向（路由里只有 `about` / `copyright` / `privacy` / `terms`
+  四条固定路径，其它 slug 一律落到首页兜底）；
+- slug 是机器标识，不是展示内容——用户看不到，改它没有任何收益。
+
+所以 `about-xinyue-ai` 这种带旧品牌的 slug **保留不动**，只把 `title`
+改成「关于 bozzii」。
+
 
 ### 脚本报错怎么办
 
